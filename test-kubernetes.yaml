@@ -1,0 +1,42 @@
+# Service creation for load balancing
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-kubernetes
+  labels:
+    app: test-kubernetes
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: test-kubernetes
+    tier: test-kubernetes
+  type: LoadBalancer
+---
+# Deployment creation of the application
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: test-kubernetes
+  labels:
+    app: test-kubernetes
+spec:
+  selector:
+    matchLabels:
+      app: test-kubernetes
+      tier: test-kubernetes
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: test-kubernetes
+        tier: test-kubernetes
+    spec:
+      containers:
+      - image: test-kubernetes
+        name: test-kubernetes
+        imagePullPolicy: IfNotPresent
+        env:
+        ports:
+        - containerPort: 80
