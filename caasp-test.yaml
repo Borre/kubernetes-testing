@@ -11,10 +11,10 @@ spec:
   selector:
     app: test-kubernetes
     tier: test-kubernetes
-  type: LoadBalancer
+  type: NodePort
 ---
 # Deployment creation of the application
-apiVersion: apps/v1beta2
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: test-kubernetes
@@ -35,7 +35,7 @@ spec:
         tier: test-kubernetes
     spec:
       containers:
-      - image: test-kubernetes
+      - image: borre/test-kubernetes
         name: test-kubernetes
         imagePullPolicy: IfNotPresent
         resources:
@@ -64,7 +64,7 @@ spec:
     app: redis
 ---
 # Deployment creation of redis
-apiVersion: apps/v1beta2
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: redis
