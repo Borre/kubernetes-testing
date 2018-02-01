@@ -8,6 +8,9 @@ metadata:
 spec:
   ports:
     - port: 80
+      nodePort: 30001
+      protocol: TCP
+      name: http
   selector:
     app: test-kubernetes
     tier: test-kubernetes
