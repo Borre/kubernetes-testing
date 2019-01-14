@@ -1,4 +1,4 @@
-# Manual para ejecución de prueba de concepto SUSE CaaSP
+# Manual para ejecución de prueba de concepto PaaS
 
 
 ### Repositorio de codigo:
